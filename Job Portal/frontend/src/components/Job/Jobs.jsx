@@ -36,16 +36,13 @@ const Jobs = (element) => {
     const now = new Date();
     const past = new Date(timestamp);
 
-    // Calculate the difference in milliseconds
     const diffInMs = now - past;
 
-    // Convert milliseconds to days, hours, minutes
     const diffInSeconds = Math.floor(diffInMs / 1000);
     const diffInMinutes = Math.floor(diffInSeconds / 60);
     const diffInHours = Math.floor(diffInMinutes / 60);
     const diffInDays = Math.floor(diffInHours / 24);
 
-    // Determine time ago format
     if (diffInDays >= 1) {
       return `${diffInDays} day${diffInDays > 1 ? "s" : ""} ago`;
     } else if (diffInHours >= 1) {
