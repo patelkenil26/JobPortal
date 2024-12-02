@@ -24,8 +24,6 @@ const PostJob = () => {
 
   const { isAuthorized, user } = useContext(Context);
 
-  
-
   const handleJobPost = async (e) => {
     e.preventDefault();
     if (salaryType === "Fixed Salary") {
@@ -41,7 +39,7 @@ const PostJob = () => {
     console.log("Before PostsJob Component rendering");
     await axios
       .post(
-        "http://localhost:4000/api/v1/job/post",
+        "https://jobportal-cqtd.onrender.com/api/v1/job/post",
         fixedSalary.length >= 4
           ? {
               companyName,
@@ -90,10 +88,10 @@ const PostJob = () => {
       });
   };
 
-  const navigateToAllJobs = useNavigate()
-  const handleToNavigateAllJobs = () =>{
-    navigateToAllJobs("/job/getall")
-  }
+  const navigateToAllJobs = useNavigate();
+  const handleToNavigateAllJobs = () => {
+    navigateToAllJobs("/job/getall");
+  };
 
   const navigateTo = useNavigate();
   if (!isAuthorized || (user && user.role !== "Employer")) {
@@ -186,7 +184,10 @@ const PostJob = () => {
               </div> */}
           </form>
           <h3 className="ml-[800px] mb-5 mt-6 font-semibold">Job Details</h3>
-          <form onSubmit={handleJobPost} className="ml-96 max-w-6xl border-2 border-gray-300 p-10 shadow-md">
+          <form
+            onSubmit={handleJobPost}
+            className="ml-96 max-w-6xl border-2 border-gray-300 p-10 shadow-md"
+          >
             <div className="wrapper mb-5">
               <label
                 htmlFor=""
@@ -196,7 +197,7 @@ const PostJob = () => {
                 Job Title
               </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5   "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5   "
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -212,7 +213,7 @@ const PostJob = () => {
                 Location
               </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
@@ -221,7 +222,12 @@ const PostJob = () => {
             </div>
 
             <div className="salary_wrapper mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">Select Salary type</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Select Salary type
+              </label>
               <select
                 value={salaryType}
                 onChange={(e) => setSalaryType(e.target.value)}
@@ -236,7 +242,7 @@ const PostJob = () => {
                   <p></p>
                 ) : salaryType === "Fixed Salary" ? (
                   <input
-                  className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                    className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                     type="number"
                     placeholder="Enter Fixed Salary"
                     value={fixedSalary}
@@ -245,14 +251,14 @@ const PostJob = () => {
                 ) : (
                   <div className="ranged_salary">
                     <input
-                    className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                      className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                       type="number"
                       placeholder="Salary From"
                       value={salaryFrom}
                       onChange={(e) => setSalaryFrom(e.target.value)}
                     />
                     <input
-                    className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                      className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                       type="number"
                       placeholder="Salary To"
                       value={salaryTo}
@@ -264,9 +270,14 @@ const PostJob = () => {
             </div>
             {/* Requirement */}
             <div className="mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">Requirement</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Requirement
+              </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                 type="text"
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
@@ -276,9 +287,14 @@ const PostJob = () => {
             {/* jobType */}
 
             <div className="mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">Job Type</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Job Type
+              </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                 type="text"
                 value={jobType}
                 onChange={(e) => setJobType(e.target.value)}
@@ -288,9 +304,14 @@ const PostJob = () => {
             {/* experienceLevel */}
 
             <div className="mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">Experience Level</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Experience Level
+              </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                 type="number"
                 value={experienceLevel}
                 onChange={(e) => setExperienceLevel(e.target.value)}
@@ -299,9 +320,14 @@ const PostJob = () => {
             </div>
             {/* noOfPositions */}
             <div className="mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">No Of Positions</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                No Of Positions
+              </label>
               <input
-              className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
+                className="shadow-md bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg  block w-full p-2.5 "
                 type="number"
                 value={noOfPositions}
                 onChange={(e) => setNoOfPositions(e.target.value)}
@@ -309,7 +335,12 @@ const PostJob = () => {
               />
             </div>
             <div className="mb-5">
-              <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Description
+              </label>
               <textarea
                 rows="10"
                 value={description}

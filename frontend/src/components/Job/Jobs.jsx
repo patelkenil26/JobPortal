@@ -16,7 +16,7 @@ const Jobs = (element) => {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:4000/api/v1/job/getall", {
+        .get("https://jobportal-cqtd.onrender.com/api/v1/job/getall", {
           withCredentials: true,
         })
 
@@ -93,16 +93,36 @@ const Jobs = (element) => {
                     </p>
                   </div>
 
-                  <div className='flex items-center gap-2 mt-4'>
-                    <Badge className={'text-blue-700 font-bold p-2'} variant="ghost">{element?.noOfPositions} Positions</Badge>
-                    <Badge className={'text-[#F83002] font-bold p-2'} variant="ghost">{element?.jobType}</Badge>
-                    <Badge className={'text-[#7209b7] font-bold p-2'} variant="ghost">{element?.salaryFrom}-{element.salaryTo}LPA</Badge>
+                  <div className="flex items-center gap-2 mt-4">
+                    <Badge
+                      className={"text-blue-700 font-bold p-2"}
+                      variant="ghost"
+                    >
+                      {element?.noOfPositions} Positions
+                    </Badge>
+                    <Badge
+                      className={"text-[#F83002] font-bold p-2"}
+                      variant="ghost"
+                    >
+                      {element?.jobType}
+                    </Badge>
+                    <Badge
+                      className={"text-[#7209b7] font-bold p-2"}
+                      variant="ghost"
+                    >
+                      {element?.salaryFrom}-{element.salaryTo}LPA
+                    </Badge>
                   </div>
 
-                  <button className='flex items-center gap-4 mt-4'>
-                    <Link to={`/job/${element._id}`} className="font-bold" variant="outline">Job Details</Link>
+                  <button className="flex items-center gap-4 mt-4">
+                    <Link
+                      to={`/job/${element._id}`}
+                      className="font-bold"
+                      variant="outline"
+                    >
+                      Job Details
+                    </Link>
                   </button>
-                  
                 </div>
               );
             })}

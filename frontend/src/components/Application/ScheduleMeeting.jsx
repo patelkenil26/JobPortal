@@ -20,7 +20,7 @@ const ScheduleMeeting = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
-  const[jobSeekerEmail,setJobSeekerEmail] = useState("")
+  const [jobSeekerEmail, setJobSeekerEmail] = useState("");
   const [applications, setApplications] = useState([]);
 
   // const [meetingId, setMeetingId] = useState("");
@@ -37,20 +37,20 @@ const ScheduleMeeting = () => {
     formData.append("email", email);
     formData.append("date", date);
     formData.append("jobSeekerEmail", jobSeekerEmail);
-    
+
     formData.append("applicationId", applicationId);
     // formData.append("applicationId",applicationId)
 
     console.log("name", name);
     console.log("email", email);
     console.log("date", date);
-    console.log("jobSeekerEmail",jobSeekerEmail)
+    console.log("jobSeekerEmail", jobSeekerEmail);
     // console.log("meetingId",meetingId)
 
     try {
       console.log("Before APi calling");
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/schedule/meeting/${applicationId}`,
+        `https://jobportal-cqtd.onrender.com/api/v1/schedule/meeting/${applicationId}`,
         formData,
         {
           withCredentials: true,
@@ -136,7 +136,7 @@ const ScheduleMeeting = () => {
             required
           />
         </div>
-        
+
         <div class="mb-5">
           <label
             htmlFor="date"

@@ -17,7 +17,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/job/getmyjobs",
+          "https://jobportal-cqtd.onrender.com/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -46,9 +46,13 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
-        withCredentials: true,
-      })
+      .put(
+        `https://jobportal-cqtd.onrender.com/api/v1/job/update/${jobId}`,
+        updatedJob,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         setEditingMode(null);
@@ -61,9 +65,12 @@ const MyJobs = () => {
   //Function For Deleting Job
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`http://localhost:4000/api/v1/job/delete/${jobId}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `https://jobportal-cqtd.onrender.com/api/v1/job/delete/${jobId}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         setMyJobs((prevJobs) => prevJobs.filter((job) => job._id !== jobId));
@@ -86,125 +93,220 @@ const MyJobs = () => {
     <>
       <div className="myJobs page bg-gray-50 min-h-screen py-8">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-8">Your Posted Jobs</h1>
+          <h1 className="text-4xl font-bold text-center mb-8">
+            Your Posted Jobs
+          </h1>
           {myJobs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {myJobs.map((element) => (
-                <div className="card bg-white shadow-md rounded-lg p-6" key={element._id}>
+                <div
+                  className="card bg-white shadow-md rounded-lg p-6"
+                  key={element._id}
+                >
                   <div className="content">
                     <div className="short_fields space-y-4">
                       <div className="shadow-lg p-4 border-l-4 border-blue-500 rounded">
                         {/* Company Name and Website */}
                         <div>
-                          <span className="block font-semibold text-gray-700">Company Name:</span>
+                          <span className="block font-semibold text-gray-700">
+                            Company Name:
+                          </span>
                           <input
                             type="text"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                             disabled={editingMode !== element._id}
                             value={element.companyName}
-                            onChange={(e) => handleInputChange(element._id, "companyName", e.target.value)}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "companyName",
+                                e.target.value
+                              )
+                            }
                           />
                         </div>
                         <div>
-                          <span className="block font-semibold text-gray-700">Company Website:</span>
-                          <a href={element.companyWebsite} target="_blank" className="underline text-blue-600">
+                          <span className="block font-semibold text-gray-700">
+                            Company Website:
+                          </span>
+                          <a
+                            href={element.companyWebsite}
+                            target="_blank"
+                            className="underline text-blue-600"
+                          >
                             <input
                               type="text"
-                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
+                              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                               disabled={editingMode !== element._id}
                               value={element.companyWebsite}
-                              onChange={(e) => handleInputChange(element._id, "companyWebsite", e.target.value)}
+                              onChange={(e) =>
+                                handleInputChange(
+                                  element._id,
+                                  "companyWebsite",
+                                  e.target.value
+                                )
+                              }
                             />
                           </a>
                         </div>
                         {/* Company Description and Location */}
                         <div className="mt-4">
-                          <span className="block font-semibold text-gray-700">Company Description:</span>
+                          <span className="block font-semibold text-gray-700">
+                            Company Description:
+                          </span>
                           <input
                             type="text"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                             disabled={editingMode !== element._id}
                             value={element.companyDescription}
-                            onChange={(e) => handleInputChange(element._id, "companyDescription", e.target.value)}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "companyDescription",
+                                e.target.value
+                              )
+                            }
                           />
                         </div>
                         <div>
-                          <span className="block font-semibold text-gray-700">Company Location:</span>
+                          <span className="block font-semibold text-gray-700">
+                            Company Location:
+                          </span>
                           <input
                             type="text"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                             disabled={editingMode !== element._id}
                             value={element.companyLocation}
-                            onChange={(e) => handleInputChange(element._id, "companyLocation", e.target.value)}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "companyLocation",
+                                e.target.value
+                              )
+                            }
                           />
                         </div>
                       </div>
                       {/* Job Details */}
                       <div>
-                        <span className="block font-semibold text-gray-700">Title:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Title:
+                        </span>
                         <input
                           type="text"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.title}
-                          onChange={(e) => handleInputChange(element._id, "title", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "title",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">No Of Positions:</span>
+                        <span className="block font-semibold text-gray-700">
+                          No Of Positions:
+                        </span>
                         <input
                           type="number"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.noOfPositions}
-                          onChange={(e) => handleInputChange(element._id, "noOfPosition", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "noOfPosition",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">Experience Level:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Experience Level:
+                        </span>
                         <input
                           type="number"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.experienceLevel}
-                          onChange={(e) => handleInputChange(element._id, "experienceLevel", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "experienceLevel",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">Requirement:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Requirement:
+                        </span>
                         <input
                           type="text"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.requirement}
-                          onChange={(e) => handleInputChange(element._id, "requirement", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "requirement",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">Salary:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Salary:
+                        </span>
                         <div className="flex space-x-4">
                           <input
                             type="number"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                             disabled={editingMode !== element._id}
                             value={element.salaryFrom}
-                            onChange={(e) => handleInputChange(element._id, "salaryFrom", e.target.value)}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "salaryFrom",
+                                e.target.value
+                              )
+                            }
                           />
                           <input
                             type="number"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                             disabled={editingMode !== element._id}
                             value={element.salaryTo}
-                            onChange={(e) => handleInputChange(element._id, "salaryTo", e.target.value)}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "salaryTo",
+                                e.target.value
+                              )
+                            }
                           />
                         </div>
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">Expired:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Expired:
+                        </span>
                         <select
-                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
-                            value={element.expired}
-                          onChange={(e) => handleInputChange(element._id, "expired", e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
+                          value={element.expired}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "expired",
+                              e.target.value
+                            )
+                          }
                           disabled={editingMode !== element._id}
                         >
                           <option value={true}>TRUE</option>
@@ -215,23 +317,39 @@ const MyJobs = () => {
                     {/* Long Fields */}
                     <div className="long_field mt-4 space-y-4">
                       <div>
-                        <span className="block font-semibold text-gray-700">Description:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Description:
+                        </span>
                         <input
                           type="text"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.description}
-                          onChange={(e) => handleInputChange(element._id, "description", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "description",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                       <div>
-                        <span className="block font-semibold text-gray-700">Location:</span>
+                        <span className="block font-semibold text-gray-700">
+                          Location:
+                        </span>
                         <input
                           type="text"
                           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 focus:ring-blue-500"
                           disabled={editingMode !== element._id}
                           value={element.location}
-                          onChange={(e) => handleInputChange(element._id, "location", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange(
+                              element._id,
+                              "location",
+                              e.target.value
+                            )
+                          }
                         />
                       </div>
                     </div>
@@ -279,7 +397,6 @@ const MyJobs = () => {
       </div>
     </>
   );
-  
 };
 
 export default MyJobs;

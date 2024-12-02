@@ -52,7 +52,7 @@ const Application = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/application/post",
+        "https://jobportal-cqtd.onrender.com/api/v1/application/post",
         formData,
         {
           withCredentials: true,
@@ -90,7 +90,10 @@ const Application = () => {
     <section className="application">
       <div className="container">
         <h3>Application Form</h3>
-        <form onSubmit={handleApplication} className="ml-96 max-w-full border-2 border-gray-300 p-10 shadow-md">
+        <form
+          onSubmit={handleApplication}
+          className="ml-96 max-w-full border-2 border-gray-300 p-10 shadow-md"
+        >
           <label
             htmlFor=""
             className="flex select-none items-center -mb-3 pl-1 text-gray-800 text-2xl sm:text-md "
@@ -152,20 +155,20 @@ const Application = () => {
 
           {/* LinkedIn Link */}
           <label
-              htmlFor=""
-              className="flex select-none  items-center -mb-3 pl-1 text-gray-800 text-2xl sm:text-md"
-            >
-              LinkedIn Link
-            </label>
-            <input
-              className="block flex-1 border-0  bg-transparent w-[44rem]  bg-gray-300 rounded-lg text-gray-900 placeholder:text-gray-600 placeholder:pl-3 focus:ring-0 sm:text-sm sm:leading-6"
-              type="text"
-              placeholder="Enter Your LinkedIn Link"
-              value={linkedInLink}
-              onChange={(e) => setLinkedInLink(e.target.value)}
-            />
+            htmlFor=""
+            className="flex select-none  items-center -mb-3 pl-1 text-gray-800 text-2xl sm:text-md"
+          >
+            LinkedIn Link
+          </label>
+          <input
+            className="block flex-1 border-0  bg-transparent w-[44rem]  bg-gray-300 rounded-lg text-gray-900 placeholder:text-gray-600 placeholder:pl-3 focus:ring-0 sm:text-sm sm:leading-6"
+            type="text"
+            placeholder="Enter Your LinkedIn Link"
+            value={linkedInLink}
+            onChange={(e) => setLinkedInLink(e.target.value)}
+          />
 
-             {/* Github Link */}
+          {/* Github Link */}
           <div>
             <label
               htmlFor=""
@@ -307,8 +310,7 @@ const Application = () => {
               style={{ width: "100%" }}
             />
           </div>
-          
-         
+
           <button type="submit">Send Application</button>
         </form>
       </div>

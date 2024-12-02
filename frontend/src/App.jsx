@@ -26,7 +26,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/v1/user/getuser",
+          "https://jobportal-cqtd.onrender.com/api/v1/user/getuser",
           {
             withCredentials: true,
           }
@@ -57,7 +57,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/applications/me/roomCode" element={<RoomCode />} />
           <Route path="/room/:id" element={<Room />} />
-          <Route path="/schedule/:id" element={<ScheduleMeeting/>}/>
+          <Route path="/schedule/:id" element={<ScheduleMeeting />} />
         </Routes>
         <Footer />
         <Toaster />

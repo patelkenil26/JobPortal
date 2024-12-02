@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/user/login",
+        "https://jobportal-cqtd.onrender.com/api/v1/user/login",
         { email, password, role },
         {
           headers: {
@@ -54,13 +54,21 @@ const Login = () => {
           {/* Left Section - Login Form */}
           <div className="w-full lg:w-1/2 p-6">
             <div className="text-center mb-6">
-              <img src="/JobZeelogo.png" alt="logo" className="mx-auto w-24 mb-4" />
-              <h3 className="text-2xl font-semibold text-gray-800">Login to your account</h3>
+              <img
+                src="/JobZeelogo.png"
+                alt="logo"
+                className="mx-auto w-24 mb-4"
+              />
+              <h3 className="text-2xl font-semibold text-gray-800">
+                Login to your account
+              </h3>
             </div>
             <form className="space-y-6">
               {/* Role Select */}
               <div className="relative">
-                <label className="block text-sm font-medium text-gray-700">Login As</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Login As
+                </label>
                 <div className="relative">
                   <select
                     value={role}
@@ -72,12 +80,14 @@ const Login = () => {
                     <option value="Job Seeker">Job Seeker</option>
                   </select>
                 </div>
-                  <FaRegUser className="absolute top-3 right-3 text-gray-500" />
+                <FaRegUser className="absolute top-3 right-3 text-gray-500" />
               </div>
 
               {/* Email Input */}
               <div className="relative">
-                <label className="block text-sm font-medium text-gray-700">Email Address</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -90,7 +100,9 @@ const Login = () => {
 
               {/* Password Input with Show/Hide */}
               <div className="relative">
-                <label className="block text-sm font-medium text-gray-700">Password</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"} // Toggle password visibility
@@ -108,7 +120,7 @@ const Login = () => {
                     {showPassword ? <RiEyeOffLine /> : <RiEyeLine />}
                   </button>
                 </div>
-                  <RiLock2Fill className="absolute top-3 right-3 text-gray-500" />
+                <RiLock2Fill className="absolute top-3 right-3 text-gray-500" />
               </div>
 
               {/* Login Button */}

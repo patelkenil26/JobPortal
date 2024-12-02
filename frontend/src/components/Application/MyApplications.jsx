@@ -18,19 +18,24 @@ const MyApplications = () => {
     try {
       if (user && user.role === "Employer") {
         axios
-          .get("http://localhost:4000/api/v1/application/employer/getall", {
-            withCredentials: true,
-          })
+          .get(
+            "https://jobportal-cqtd.onrender.com/api/v1/application/employer/getall",
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             setApplications(res.data.applications);
           });
       } else {
         axios
-          .get("http://localhost:4000/api/v1/application/jobseeker/getall", {
-            withCredentials: true,
-          })
+          .get(
+            "https://jobportal-cqtd.onrender.com/api/v1/application/jobseeker/getall",
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
-
             setApplications(res.data.applications);
           });
       }
@@ -46,9 +51,12 @@ const MyApplications = () => {
   const deleteApplication = (id) => {
     try {
       axios
-        .delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
-          withCredentials: true,
-        })
+        .delete(
+          `https://jobportal-cqtd.onrender.com/api/v1/application/delete/${id}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           toast.success(res.data.message);
           setApplications((prevApplication) =>
@@ -285,121 +293,120 @@ const EmployerCard = ({ element, openModal }) => {
   };
   return (
     <>
-    <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
+        {/* Employer Card */}
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-6 w-2/3">
+          <div className="flex justify-around">
+            <div className="flex flex-col space-y-4">
+              {/* Name and Email */}
+              <div>
+                <p className="text-xl font-semibold">
+                  <span className="font-bold text-gray-800">Name:</span>{" "}
+                  {element.name}
+                </p>
+                <p className="text-xl font-semibold">
+                  <span className="font-bold text-gray-800">Email:</span>{" "}
+                  {element.email}
+                </p>
+              </div>
 
-      {/* Employer Card */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-6 w-2/3">
-        <div className="flex justify-around">
-          <div className="flex flex-col space-y-4">
-            {/* Name and Email */}
-            <div>
-              <p className="text-xl font-semibold">
-                <span className="font-bold text-gray-800">Name:</span>{" "}
-                {element.name}
-              </p>
-              <p className="text-xl font-semibold">
-                <span className="font-bold text-gray-800">Email:</span>{" "}
-                {element.email}
-              </p>
-            </div>
-
-            {/* LinkedIn Link */}
-            <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-gray-800">
-                LinkedIn Link:
-              </span>
-              <a
-                href={element.linkedInLink}
-                className="text-blue-500 hover:text-blue-700 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
-                  LinkedIn
+              {/* LinkedIn Link */}
+              <div className="flex items-center space-x-2">
+                <span className="text-xl font-bold text-gray-800">
+                  LinkedIn Link:
                 </span>
-              </a>
-            </div>
+                <a
+                  href={element.linkedInLink}
+                  className="text-blue-500 hover:text-blue-700 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                    LinkedIn
+                  </span>
+                </a>
+              </div>
 
-            {/* Skills Section */}
-            <div>
-              <p className="text-xl font-bold text-gray-800">Skills:</p>
-              <div className="flex flex-wrap gap-2">
-                {element.skillsYouHave && element.skillsYouHave.length > 0 ? (
-                  element.skillsYouHave.split(",").map((skill, index) => (
-                    <span
-                      key={index}
-                      className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
-                    >
-                      {skill.trim()}
-                    </span>
-                  ))
-                ) : (
-                  <span className="text-gray-600">No skills listed</span>
-                )}
+              {/* Skills Section */}
+              <div>
+                <p className="text-xl font-bold text-gray-800">Skills:</p>
+                <div className="flex flex-wrap gap-2">
+                  {element.skillsYouHave && element.skillsYouHave.length > 0 ? (
+                    element.skillsYouHave.split(",").map((skill, index) => (
+                      <span
+                        key={index}
+                        className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
+                      >
+                        {skill.trim()}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-gray-600">No skills listed</span>
+                  )}
+                </div>
+              </div>
+
+              {/* CGPA */}
+              <div>
+                <p className="text-xl font-bold text-gray-800">
+                  CGPA:
+                  <span className="text-gray-700 font-medium">
+                    {" "}
+                    {element.currentCGPA || "N/A"}
+                  </span>
+                </p>
+              </div>
+
+              {/* Project Link */}
+              <div className="flex items-center space-x-2">
+                <span className="text-xl font-bold text-gray-800">
+                  Project Link:
+                </span>
+                <a
+                  href={element.projectLink}
+                  className="text-indigo-500 hover:text-indigo-700 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-indigo-100 text-indigo-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                    View Project
+                  </span>
+                </a>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex space-x-4 mt-6">
+                <Link to={`/schedule/${element._id}`}>
+                  <button
+                    className="bg-blue-500 text-white font-semibold rounded-lg px-4 py-2 hover:bg-blue-600 transition-colors"
+                    onClick={interviewHandler}
+                  >
+                    Schedule Meeting
+                  </button>
+                </Link>
+                <Link to={`/room/${element._id}`}>
+                  <button
+                    className="bg-green-500 text-white font-semibold rounded-lg px-4 py-2 hover:bg-green-600 transition-colors"
+                    onClick={interviewHandler}
+                  >
+                    Take Interview
+                  </button>
+                </Link>
               </div>
             </div>
-
-            {/* CGPA */}
-            <div>
-              <p className="text-xl font-bold text-gray-800">
-                CGPA:
-                <span className="text-gray-700 font-medium">
-                  {" "}
-                  {element.currentCGPA || "N/A"}
-                </span>
-              </p>
+            {/* Resume */}
+            <div className="">
+              <p className="text-xl font-bold text-gray-800">Resume:</p>
+              <img
+                src={element.resume?.url}
+                alt="Resume"
+                className=" h-60 w-48 object-cover rounded-lg shadow-sm cursor-pointer"
+                onClick={() => openModal(element.resume.url)}
+              />
             </div>
-
-            {/* Project Link */}
-            <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-gray-800">
-                Project Link:
-              </span>
-              <a
-                href={element.projectLink}
-                className="text-indigo-500 hover:text-indigo-700 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="bg-indigo-100 text-indigo-800 text-sm font-medium px-2.5 py-0.5 rounded">
-                  View Project
-                </span>
-              </a>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex space-x-4 mt-6">
-              <Link to={`/schedule/${element._id}`}>
-                <button
-                  className="bg-blue-500 text-white font-semibold rounded-lg px-4 py-2 hover:bg-blue-600 transition-colors"
-                  onClick={interviewHandler}
-                >
-                  Schedule Meeting
-                </button>
-              </Link>
-              <Link to={`/room/${element._id}`}>
-                <button
-                  className="bg-green-500 text-white font-semibold rounded-lg px-4 py-2 hover:bg-green-600 transition-colors"
-                  onClick={interviewHandler}
-                >
-                  Take Interview
-                </button>
-              </Link>
-            </div>
-          </div>
-          {/* Resume */}
-          <div className="">
-            <p className="text-xl font-bold text-gray-800">Resume:</p>
-            <img
-              src={element.resume?.url}
-              alt="Resume"
-              className=" h-60 w-48 object-cover rounded-lg shadow-sm cursor-pointer"
-              onClick={() => openModal(element.resume.url)}
-            />
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
