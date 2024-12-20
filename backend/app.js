@@ -1,5 +1,5 @@
-import express from "express";
 require('dotenv').config();
+import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { dbConnection } from "./database/dbConnection.js";
