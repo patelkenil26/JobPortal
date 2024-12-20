@@ -1,5 +1,5 @@
 import express from "express";
-import { config } from "dotenv";
+require('dotenv').config();
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { dbConnection } from "./database/dbConnection.js";
@@ -11,11 +11,10 @@ import { errorMiddleware } from "./middlewares/error.js";
 import fileUpload from "express-fileupload";
 
 const app = express();
-config();
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: process.env.FRONTEND_URL,
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
