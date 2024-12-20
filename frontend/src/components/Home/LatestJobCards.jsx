@@ -15,7 +15,7 @@ const LatestJobCards = (element) => {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:4000/api/v1/job/getall", {
+        .get("https://jobportalapi-1otp.onrender.com/api/v1/job/getall", {
           withCredentials: true,
         })
 

@@ -21,7 +21,7 @@ const Room = () => {
       sharedLinks: [
         {
           name: "Personal link",
-          url: `http://localhost:5173/room/${id}`,
+          url: `https://job-portal-flax-sigma.vercel.app/room/${id}`,
         },
       ],
       scenario: {

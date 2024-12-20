@@ -39,7 +39,7 @@ const PostJob = () => {
     console.log("Before PostsJob Component rendering");
     await axios
       .post(
-        "http://localhost:4000/api/v1/job/post",
+        "https://jobportalapi-1otp.onrender.com/api/v1/job/post",
         fixedSalary.length >= 4
           ? {
               companyName,

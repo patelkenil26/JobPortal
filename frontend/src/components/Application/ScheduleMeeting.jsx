@@ -50,7 +50,7 @@ const ScheduleMeeting = () => {
     try {
       console.log("Before APi calling");
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/schedule/meeting/${applicationId}`,
+        `https://jobportalapi-1otp.onrender.com/api/v1/schedule/meeting/${applicationId}`,
         formData,
         {
           withCredentials: true,
