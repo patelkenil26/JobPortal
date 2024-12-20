@@ -13,7 +13,7 @@ const JobDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://jobportal-cqtd.onrender.com/api/v1/job/${id}`, {
+      .get(`https://jobportal-66ws.onrender.com/api/v1/job/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
