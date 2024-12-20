@@ -19,7 +19,7 @@ const MyApplications = () => {
       if (user && user.role === "Employer") {
         axios
           .get(
-            "https://jobportal-66ws.onrender.com/api/v1/application/employer/getall",
+            "http://localhost:4000/api/v1/application/employer/getall",
             {
               withCredentials: true,
             }
@@ -30,7 +30,7 @@ const MyApplications = () => {
       } else {
         axios
           .get(
-            "https://jobportal-66ws.onrender.com/api/v1/application/jobseeker/getall",
+            "http://localhost:4000/api/v1/application/jobseeker/getall",
             {
               withCredentials: true,
             }
@@ -52,7 +52,7 @@ const MyApplications = () => {
     try {
       axios
         .delete(
-          `https://jobportal-66ws.onrender.com/api/v1/application/delete/${id}`,
+          `http://localhost:4000/api/v1/application/delete/${id}`,
           {
             withCredentials: true,
           }

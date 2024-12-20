@@ -16,7 +16,7 @@ const Jobs = (element) => {
   useEffect(() => {
     try {
       axios
-        .get("https://jobportal-66ws.onrender.com/api/v1/job/getall", {
+        .get("http://localhost:4000/api/v1/job/getall", {
           withCredentials: true,
         })
 
