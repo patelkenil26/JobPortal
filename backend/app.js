@@ -11,7 +11,7 @@ import { errorMiddleware } from "./middlewares/error.js";
 import fileUpload from "express-fileupload";
 
 const app = express();
-config({ path: "./config/config.env" });
+config();
 
 app.use(
   cors({
